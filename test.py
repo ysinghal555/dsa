@@ -1,32 +1,18 @@
-import math
-
-
 class Solution:
-    def isomorphicString(self, s1, s2):
-        if len(s1) != len(s2):
-            return False
-        n = len(s1)
-        s1_to_s2 = {}
-        s2_to_s1 = {}
+    def secondLargestElement(self, arr):
+        n = len(arr)
+        fmax = float('-inf')
+        smax = float('-inf')
 
         for i in range(n):
-            char1 = s1[i]
-            char2 = s2[i]
+            if arr[i] > fmax:
+                smax = fmax
+                fmax = arr[i]
+            elif fmax > arr[i] > smax:
+                smax = arr[i]
 
-            if char1 in s1_to_s2:
-                if s1_to_s2[char1] != char2:
-                    return False
-            else:
-                s1_to_s2[char1] = char2
-
-            if char2 in s2_to_s1:
-                if s2_to_s1[char2] != char1:
-                    return False
-            else:
-                s2_to_s1[char2] = char1
-
-        return True
+        return smax
 
 
 s = Solution()
-print(s.isomorphicString("aabcffzzzzz", "ddbiaaaaaaa"))
+print(s.secondLargestElement([8, 8, 7, 6, 5]))
