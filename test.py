@@ -1,18 +1,16 @@
 class Solution:
-    def secondLargestElement(self, arr):
+    # Function to return the position of the first repeating element.
+    def firstRepeated(self, arr):
         n = len(arr)
-        fmax = float('-inf')
-        smax = float('-inf')
-
+        res = {}
         for i in range(n):
-            if arr[i] > fmax:
-                smax = fmax
-                fmax = arr[i]
-            elif fmax > arr[i] > smax:
-                smax = arr[i]
+            if arr[i] in res:
+                return res[arr[i]] + 1
+            res[arr[i]] = i
 
-        return smax
+        return -1
 
 
 s = Solution()
-print(s.secondLargestElement([8, 8, 7, 6, 5]))
+# print(s.firstRepeated([7, 4, 0, 9, 4, 8, 8, 2, 4, 5, 5, 1]))
+print(s.firstRepeated([1, 5, 3, 4, 3, 5, 6]))
